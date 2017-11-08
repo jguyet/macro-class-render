@@ -3,6 +3,7 @@ name = "macro-class-render"
 version = "0.0.1"
 authors = ["jguyet"]
 
+license = "CC0-1.0"
 description = "Macro for speed class coding"
 repository = "https://github.com/jguyet/macro-class-render.git"
 readme = "README.md"
