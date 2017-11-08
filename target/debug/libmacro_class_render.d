@@ -1,0 +1,1 @@
+/Users/jguyet/rusttest/macro-class-render/target/debug/libmacro_class_render.dylib: /Users/jguyet/rusttest/macro-class-render/src/setters.rs /Users/jguyet/rusttest/macro-class-render/src/getters.rs /Users/jguyet/rusttest/macro-class-render/src/lib.rs /Users/jguyet/rusttest/macro-class-render/src/mut_getters.rs /Users/jguyet/rusttest/macro-class-render/src/constructor.rs
