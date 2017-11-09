@@ -1,5 +1,5 @@
 [package]
-name = "macro-class-render"
+name = "macroclassrender"
 version = "0.0.1"
 authors = ["jguyet"]
 

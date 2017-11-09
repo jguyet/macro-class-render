@@ -11,6 +11,23 @@ mod mut_getters;
 mod getters;
 mod setters;
 mod constructor;
+mod functions;
+
+#[proc_macro_derive(Functions, attributes(__function))]
+pub fn functions(input: TokenStream) -> TokenStream {
+    // Construct a string representation of the type definition
+    let s = input.to_string();
+
+    // Parse the string representation
+    let ast = syn::parse_derive_input(&s).expect("Couldn't parse for Functions");
+
+    // Build the impl
+    let gen = produce_contructor(&ast, functions::implement);
+
+    println!("String Function : {}", gen);
+    // Return the generated impl
+    gen.parse().unwrap()
+}
 
 #[proc_macro_derive(Constructor, attributes(__constructor))]
 pub fn constructor(input: TokenStream) -> TokenStream {
@@ -18,7 +35,7 @@ pub fn constructor(input: TokenStream) -> TokenStream {
     let s = input.to_string();
 
     // Parse the string representation
-    let ast = syn::parse_derive_input(&s).expect("Couldn't parse for getters");
+    let ast = syn::parse_derive_input(&s).expect("Couldn't parse for Contructor");
 
     // Build the impl
     let gen = produce_contructor(&ast, constructor::implement);
@@ -105,7 +122,9 @@ fn produce_contructor(ast: &DeriveInput, worker: fn(&Field, &String) -> Tokens) 
     // Is it a struct?
     if let syn::Body::Struct(syn::VariantData::Struct(ref fields)) = ast.body {
         let classname = format!("{}", ast.ident);
-        let generated = fields.iter().map(|x| { (worker(x, &classname)) }).collect::<Vec<_>>();
+        let generated = fields.iter().map(|x| { (
+            worker(x, &classname)
+        ) }).collect::<Vec<_>>();
 
         quote! {
             impl #impl_generics #name #ty_generics #where_clause {

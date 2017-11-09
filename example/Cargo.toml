@@ -1,0 +1,7 @@
+[package]
+name = "testmacroclassrender"
+version = "0.1.0"
+authors = ["jguyet"]
+
+[dependencies]
+macroclassrender = { path = "../" }
